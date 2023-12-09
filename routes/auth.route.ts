@@ -48,6 +48,10 @@ export class AuthRoute implements Routes {
             },
             this.auth.loginCallback
         );
+        // 회원가입
+        this.router.post(`/local/join`, this.auth.join);
+
+        // 로그인 에러
         this.router.get(`/login-error`, this.auth.loginError);
     }
 }
