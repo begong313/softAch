@@ -5,6 +5,7 @@ import { AuthRoute } from "./routes/auth.route";
 import { ChatRoute } from "./routes/chat.route";
 import { ChatroomRoute } from "./routes/chatroom.route";
 import { FreindRoute } from "./routes/friend.route";
+import { PublicKeyRoute } from "./routes/publicKey.route";
 
 try {
     const app = new App([
@@ -13,6 +14,7 @@ try {
         new AuthRoute(),
         new ChatroomRoute(),
         new FreindRoute(),
+        new PublicKeyRoute(),
     ]);
 
     const server = app.listen();
