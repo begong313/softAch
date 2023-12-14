@@ -5,10 +5,14 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install
+RUN npm install \
+    npm i\
+    npx tsc
 
 COPY . .
 
 EXPOSE 8000
 
-CMD ["npm", "run", "dev"]
+
+
+CMD ["npm", "start"]
