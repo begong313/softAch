@@ -26,7 +26,9 @@ export class App {
             console.log(`env : ${this.env}`);
         });
     }
-    private init(): void {}
+    private init(): void {
+        this.app.set("port", this.port);
+    }
     private useMiddleWares(): void {
         this.app.use(express.json({ limit: "5mb" }));
         this.app.use(

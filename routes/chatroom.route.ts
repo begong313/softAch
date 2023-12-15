@@ -13,5 +13,6 @@ export class ChatroomRoute implements Routes {
 
     private initializeRoutes() {
         this.router.post(`/singleroom`, this.chatRoom.createSingleRoom);
+        this.router.get(`/`, this.chatRoom.getChtroomList);
     }
 }
