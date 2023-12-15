@@ -20,8 +20,8 @@ export class App {
         // 순서가 중요하다. error처리는 마지막에 넣어야함
         // this.initializeErrorHandling();
     }
-    public listen(): void {
-        this.app.listen(this.port, () => {
+    public listen() {
+        return this.app.listen(this.port, () => {
             console.log(this.port, "에서 동작중");
             console.log(`env : ${this.env}`);
         });

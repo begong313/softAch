@@ -70,4 +70,16 @@ export class ChatroomController {
             response.status(400).json({ message: "오류" });
         }
     };
+
+    public createGroupRoom = async (request: Request, response: Response) => {
+        const user_id: string = String(request.headers.user_id);
+        const user_secret_key: string = String(request.body.user_secret_key);
+
+        try {
+            response.json({ data: room_id });
+        } catch (e) {
+            console.log(e);
+            response.status(400).json({ message: "오류" });
+        }
+    };
 }
