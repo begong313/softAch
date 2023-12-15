@@ -35,4 +35,14 @@ export class UserController {
         response: Response,
         next: NextFunction
     ) => {};
+    public getProfile = async (request: Request, response: Response) => {
+        const user_id: string = String(request.headers.user_id);
+        try {
+            const rows = await this.userModel.getProfile(user_id);
+            response.json({ data: rows });
+        } catch (e) {
+            console.log(e);
+            response.status(400).json({ message: "오류" });
+        }
+    };
 }

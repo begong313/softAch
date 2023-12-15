@@ -71,12 +71,17 @@ export class ChatroomController {
         }
     };
 
+    //단체 채팅방 생성
     public createGroupRoom = async (request: Request, response: Response) => {
-        const user_id: string = String(request.headers.user_id);
-        const user_secret_key: string = String(request.body.user_secret_key);
-
         try {
-            response.json({ data: room_id });
+            const room_name: string = String(request.body.room_name);
+            const enter_data: string[][] = request.body.enter_data;
+            const room_id = await this.chatroomModel.createGroupRoom(room_name);
+            for (let i = 0; i < enter_data.length; i++) {
+                enter_data[i].push(String(room_id));
+            }
+            await this.chatroomModel.addGroupChatMember(enter_data);
+            response.status(200).json({ data: room_id });
         } catch (e) {
             console.log(e);
             response.status(400).json({ message: "오류" });

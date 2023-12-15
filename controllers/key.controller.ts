@@ -37,4 +37,25 @@ export default class KeyController {
             response.status(400).json({ message: "오류" });
         }
     };
+
+    // 그룹챗에서 본인의 secret key 가져오기
+    public getGroupKey = async (request: Request, response: Response) => {
+        const user_id: string = String(request.headers.user_id);
+        const room_id: string = String(request.params.roomid);
+
+        try {
+            const rows = await this.publicKeyModel.getGroupRoomSectetKey(
+                user_id,
+                room_id
+            );
+            if (!rows) {
+                response.json({ data: null });
+                return;
+            }
+            response.json({ data: rows[0] });
+        } catch (e) {
+            console.log(e);
+            response.status(400).json({ message: "오류" });
+        }
+    };
 }

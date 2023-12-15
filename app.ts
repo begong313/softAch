@@ -2,6 +2,7 @@ import express from "express";
 import { Routes } from "./interface/routes.interface";
 import passportInit from "./passport";
 import bodyParser from "body-parser";
+import mongoConnect from "./chatSchema";
 
 export class App {
     app: express.Application;
@@ -28,7 +29,9 @@ export class App {
     }
     private init(): void {
         this.app.set("port", this.port);
+        mongoConnect();
     }
+
     private useMiddleWares(): void {
         this.app.use(express.json({ limit: "5mb" }));
         this.app.use(

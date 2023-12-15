@@ -20,5 +20,6 @@ export class UserRoute implements Routes {
             uploadProfile.single("image"),
             this.user.setProfile
         );
+        this.router.get(`/profile`, this.user.getProfile);
     }
 }

@@ -38,6 +38,18 @@ export class KeyModel {
         }
     };
 
+    public getGroupRoomSectetKey = async (user_id: string, room_id: string) => {
+        try {
+            const query = this.getGroupRoomSectetKeyQuery();
+            const [rows]: [RowDataPacket[], FieldPacket[]] =
+                await promisepool.query(query, [user_id, room_id]);
+            return rows;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    };
+
     ////////////////////////////////쿼리문////////////////////////////////
     private getPublicKeyQuery = (): string => {
         const query = ` SELECT user_id, public_key
@@ -56,6 +68,11 @@ export class KeyModel {
                         FROM singleChatroom
                         WHERE (? IN (user_id1, user_id2)) AND room_id = ?;
     `;
+        return query;
+    };
+
+    private getGroupRoomSectetKeyQuery = (): string => {
+        const query = `SELECT secret_key from groupChatAttender where user_id = ? and chatroom_id = ?;`;
         return query;
     };
 }

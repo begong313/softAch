@@ -15,5 +15,6 @@ export class KeyRoute implements Routes {
         //publicKey 받아오기
         this.router.get(`/single/:roomid`, this.key.getSectetKey);
         this.router.post(`/publickey`, this.key.getPublicKey);
+        this.router.get(`/group/:roomid`, this.key.getGroupKey);
     }
 }

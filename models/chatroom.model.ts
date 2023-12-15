@@ -1,6 +1,7 @@
 import { Service } from "typedi";
 import promisepool from "../lib/dbConnector";
 import { get } from "http";
+import { FieldPacket, ResultSetHeader } from "mysql2";
 
 @Service()
 export class ChatroomModel {
@@ -52,11 +53,39 @@ export class ChatroomModel {
         }
     };
 
+    // 그룹챗 리스트 서치 쿼리
     public getGroupChatroomList = async (user_id: string) => {
         try {
             const query = this.getGroupChatroomListQuery();
             const [rows] = await promisepool.execute(query, [user_id]);
             return rows;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    };
+    // 그룹챗방 생성
+    public createGroupRoom = async (room_name: string) => {
+        try {
+            const query = this.createGroupChatroomQuery();
+
+            const [results]: [ResultSetHeader, FieldPacket[]] =
+                await promisepool.execute(query, [room_name]);
+            return results.insertId;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    };
+    public addGroupChatMember = async (data: string[][]) => {
+        try {
+            const valuesString = data
+                .map((row) => `('${row.join("','")}')`)
+                .join(",");
+            console.log(data);
+            const query = `INSERT INTO groupChatAttender (user_id, secret_key, chatroom_id) VALUES ${valuesString};`;
+            const [result] = await promisepool.query(query);
+            return result;
         } catch (e) {
             console.log(e);
             return false;
@@ -78,6 +107,16 @@ export class ChatroomModel {
     };
     private getGroupChatroomListQuery = (): string => {
         const query = `select ga.chatroom_id from groupchatAttender as ga join groupChatroom as gc on ga.chatroom_id = gc.chatroom_id where ga.user_id = ?;`;
+        return query;
+    };
+
+    // 그룹챗방 생성
+    private createGroupChatroomQuery = (): string => {
+        const query: string = `INSERT INTO groupChatroom (room_name) VALUES (?);`;
+        return query;
+    };
+    private addGroupChatMemeberQuery = (): string => {
+        const query = `INSERT INTO groupChatAttender (user_id, secret_key, chatroom_id) VALUES (?);`;
         return query;
     };
 }

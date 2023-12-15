@@ -4,14 +4,14 @@ const MONGO_ID = process.env.MONGO_ID || "root";
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || "root";
 const NODE_ENV = process.env.NODE_ENV || "development";
 
-const MONGO_URL = `mongodb://${MONGO_ID}:${MONGO_PASSWORD}@localhost:27017/admin`;
+const MONGO_URL = process.env.MONGO_URI!;
 
 const mongoConnect = () => {
     if (NODE_ENV !== "production") {
         mongoose.set("debug", true);
     }
     mongoose.connect(MONGO_URL, {
-        dbName: "malfChat",
+        dbName: "softAch",
     });
 };
 
