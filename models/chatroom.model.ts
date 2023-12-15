@@ -1,6 +1,5 @@
 import { Service } from "typedi";
 import promisepool from "../lib/dbConnector";
-import { get } from "http";
 import { FieldPacket, ResultSetHeader } from "mysql2";
 
 @Service()
@@ -22,6 +21,7 @@ export class ChatroomModel {
                 user2_secret_key,
                 room_id,
             ]);
+
             return rows;
         } catch (e) {
             console.log(e);

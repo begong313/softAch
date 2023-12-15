@@ -1,6 +1,7 @@
 import Container from "typedi";
 import { Response, Request, NextFunction } from "express";
 import { ChatroomModel } from "../models/chatroom.model";
+import mongoose from "mongoose";
 
 export class ChatroomController {
     public chatroomModel = Container.get(ChatroomModel);
@@ -29,7 +30,9 @@ export class ChatroomController {
             user2_secret_key = user_secret_key;
         }
         const room_id = "S" + String(user_id1) + "_" + String(user_id2);
+
         try {
+            await mongoose.connection.createCollection(String(room_id));
             const rows = await this.chatroomModel.createSingleRoom(
                 user_id1,
                 user_id2,
@@ -80,6 +83,7 @@ export class ChatroomController {
             for (let i = 0; i < enter_data.length; i++) {
                 enter_data[i].push(String(room_id));
             }
+            await mongoose.connection.createCollection(String(room_id));
             await this.chatroomModel.addGroupChatMember(enter_data);
             response.status(200).json({ data: room_id });
         } catch (e) {
