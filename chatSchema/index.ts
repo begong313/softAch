@@ -11,15 +11,9 @@ const mongoConnect = () => {
     if (NODE_ENV !== "production") {
         mongoose.set("debug", true);
     }
-    mongoose
-        .connect(MONGO_URL, {
-            dbName: "softAch",
-        })
-        .then(() => {
-            const rabbitmq = new RabitMQconnection();
-            rabbitmq.consumeMessage();
-            console.log("소비시작");
-        });
+    mongoose.connect(MONGO_URL, {
+        dbName: "softAch",
+    });
 };
 
 mongoose.connection.on("error", (error) => {

@@ -15,8 +15,6 @@ export default class SocketManager {
     }
 
     private ioSetting = async () => {
-        const rabbitmq = await new RabitMQconnection().getChannel();
-        this.rabbitChannel = rabbitmq;
         this.io.on("connection", (socket: Socket) => {
             console.log("A user connected");
 
@@ -36,15 +34,11 @@ export default class SocketManager {
                     });
 
                     const message = JSON.stringify(chatdata);
-                    // rabbitMQ로 메시지 전송
-                    this.rabbitChannel.sendToQueue(
-                        "chat",
-                        Buffer.from(message)
+
+                    const collection = mongoose.connection.collection(
+                        data.room
                     );
-                    // const collection = mongoose.connection.collection(
-                    //     data.room
-                    // );
-                    // await collection.insertOne(chatdata);
+                    await collection.insertOne(chatdata);
 
                     this.io.to(data.room).emit("chat", chatdata);
                 } catch (e) {
