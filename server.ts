@@ -6,7 +6,7 @@ import { ChatRoute } from "./routes/chat.route";
 import { ChatroomRoute } from "./routes/chatroom.route";
 import { FreindRoute } from "./routes/friend.route";
 import { KeyRoute } from "./routes/key.route";
-import { setSocket } from "./socket";
+import SocketManager from "./socket";
 
 try {
     const app = new App([
@@ -19,7 +19,7 @@ try {
     ]);
 
     const server = app.listen();
-    setSocket(server, app.app);
+    new SocketManager(server, app.app);
 } catch (err) {
     console.log(err);
 }

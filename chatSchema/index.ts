@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import RabitMQconnection from "../rabbitMQ";
 
 const MONGO_ID = process.env.MONGO_ID || "root";
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || "root";
@@ -10,9 +11,15 @@ const mongoConnect = () => {
     if (NODE_ENV !== "production") {
         mongoose.set("debug", true);
     }
-    mongoose.connect(MONGO_URL, {
-        dbName: "softAch",
-    });
+    mongoose
+        .connect(MONGO_URL, {
+            dbName: "softAch",
+        })
+        .then(() => {
+            const rabbitmq = new RabitMQconnection();
+            rabbitmq.consumeMessage();
+            console.log("소비시작");
+        });
 };
 
 mongoose.connection.on("error", (error) => {

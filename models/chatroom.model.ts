@@ -115,6 +115,7 @@ export class ChatroomModel {
         const query: string = `INSERT INTO groupChatroom (room_name) VALUES (?);`;
         return query;
     };
+    // 시간 부족으로 사용안함
     private addGroupChatMemeberQuery = (): string => {
         const query = `INSERT INTO groupChatAttender (user_id, secret_key, chatroom_id) VALUES (?);`;
         return query;
