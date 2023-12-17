@@ -1,41 +1,40 @@
-drop schema if exists softArch;
-create schema softArch;
-use  softArch;
-drop table if exists `account`;
 CREATE TABLE `account` (
   `user_id` int PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(255) UNIQUE NOT NULL,
   `password` varchar(255) NOT NULL,
-  `public_key` varchar(255) NOT NULL
+  `public_key` Text NOT NULL
 );
-drop table if exists `friendship`;
+
 CREATE TABLE `friendship` (
   `user_id` int,
   `user_id2` int,
   PRIMARY KEY (`user_id`, `user_id2`)
 );
-drop table if exists `profile`;
+
 CREATE TABLE `profile` (
   `user_id` int PRIMARY KEY,
   `nickname` varchar(255),
   `profile_pic` varchar(255)
 );
-drop table if exists `singleChatroom`;
+
 CREATE TABLE `singleChatroom` (
-  `chatroom_id` varchar(255) PRIMARY KEY,
-  `owner_id` int,
-  `attender_id` int,
-  `secret_key` varchar(255) NOT NULL
+  `user_id1` int,
+  `user_id2` int,
+  `user1_secret_key` Text NOT NULL,
+  `user2_secret_key` Text NOT NULL,
+  `room_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id1`, `user_id2`)
 );
-drop table if exists `groupChatroom`;
+
 CREATE TABLE `groupChatroom` (
-  `chatroom_id` varchar(255) PRIMARY KEY
+  `chatroom_id` int PRIMARY KEY,
+  `room_name` varchar(255)
 );
-drop table if exists `groupChatAttender`;
+
 CREATE TABLE `groupChatAttender` (
-  `chatroom_id` varchar(255),
+  `chatroom_id` int,
   `user_id` int,
-  `secret_key` varchar(255),
+  `secret_key` Text,
   PRIMARY KEY (`chatroom_id`, `user_id`)
 );
 
@@ -45,9 +44,9 @@ ALTER TABLE `friendship` ADD FOREIGN KEY (`user_id`) REFERENCES `account` (`user
 
 ALTER TABLE `friendship` ADD FOREIGN KEY (`user_id2`) REFERENCES `account` (`user_id`);
 
-ALTER TABLE `singleChatroom` ADD FOREIGN KEY (`owner_id`) REFERENCES `account` (`user_id`);
+ALTER TABLE `singleChatroom` ADD FOREIGN KEY (`user_id1`) REFERENCES `account` (`user_id`);
 
-ALTER TABLE `singleChatroom` ADD FOREIGN KEY (`attender_id`) REFERENCES `account` (`user_id`);
+ALTER TABLE `singleChatroom` ADD FOREIGN KEY (`user_id2`) REFERENCES `account` (`user_id`);
 
 ALTER TABLE `groupChatAttender` ADD FOREIGN KEY (`user_id`) REFERENCES `account` (`user_id`);
 
