@@ -45,4 +45,20 @@ export class UserController {
             response.status(400).json({ message: "오류" });
         }
     };
+
+    public emailCheck = async (request: Request, response: Response) => {
+        const email: string = String(request.body.email);
+        try {
+            const rows = await this.userModel.emailCheck(email);
+            if (rows.length > 0) {
+                response.status(400).json({ message: "중복된 이메일" });
+                return;
+            }
+
+            response.status(200).json({ message: "사용가능" });
+        } catch (e) {
+            console.log(e);
+            response.status(400).json({ message: "오류" });
+        }
+    };
 }

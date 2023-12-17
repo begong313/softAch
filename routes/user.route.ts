@@ -21,5 +21,8 @@ export class UserRoute implements Routes {
             this.user.setProfile
         );
         this.router.get(`/profile`, this.user.getProfile);
+
+        //이메일 중복체크
+        this.router.post(`/email`, this.user.emailCheck);
     }
 }

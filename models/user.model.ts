@@ -29,6 +29,14 @@ export class UserModel {
             return false;
         }
     };
+    public emailCheck = async (email: string) => {
+        const query = this.emailCheckQuery();
+        const [rows]: [RowDataPacket[], FieldPacket[]] =
+            await promisepool.execute(query, [email]);
+        return rows;
+    };
+
+    ////////////////////////쿼리문////////////////////////
     private setProfileQuery = (): string => {
         const query = ` insert into profile (user_id, nickname, profile_pic) values (?, ?,?)`;
         return query;
@@ -36,6 +44,10 @@ export class UserModel {
 
     private getProfileQuery = (): string => {
         const query = ` select user_id, nickname, profile_pic from profile where user_id = ?`;
+        return query;
+    };
+    private emailCheckQuery = (): string => {
+        const query = ` select email from account where email = ?`;
         return query;
     };
 }
