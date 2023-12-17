@@ -106,7 +106,7 @@ export class ChatroomModel {
         return query;
     };
     private getGroupChatroomListQuery = (): string => {
-        const query = `select ga.chatroom_id from groupchatAttender as ga join groupChatroom as gc on ga.chatroom_id = gc.chatroom_id where ga.user_id = ?;`;
+        const query = `select ga.chatroom_id from groupChatAttender as ga join groupChatroom as gc on ga.chatroom_id = gc.chatroom_id where ga.user_id = ?;`;
         return query;
     };
 
