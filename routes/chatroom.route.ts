@@ -15,5 +15,6 @@ export class ChatroomRoute implements Routes {
         this.router.post(`/singleroom`, this.chatRoom.createSingleRoom);
         this.router.post(`/group`, this.chatRoom.createGroupRoom);
         this.router.get(`/`, this.chatRoom.getChtroomList);
+        this.router.get(`/:roomid`, this.chatRoom.getChatData);
     }
 }

@@ -91,4 +91,26 @@ export class ChatroomController {
             response.status(400).json({ message: "오류" });
         }
     };
+    // 톡방 체팅 데이터 불러오기
+    public getChatData = async (request: Request, response: Response) => {
+        const room_id: string = String(request.params.roomid);
+        const timedata = Number(request.query.time);
+        try {
+            const collection = mongoose.connection.collection(room_id);
+
+            var rows;
+            if (timedata) {
+                rows = await collection
+                    .find({ sendAt: { $gte: timedata } })
+                    .toArray();
+            } else {
+                rows = await collection.find().toArray();
+            }
+
+            response.json({ data: rows });
+        } catch (e) {
+            console.log(e);
+            response.status(400).json({ message: "오류" });
+        }
+    };
 }
