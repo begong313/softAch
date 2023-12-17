@@ -32,7 +32,7 @@ export default class SocketManager {
                         room: data.room,
                         sender: data.sender,
                         message: data.message,
-                        time: Date.now(),
+                        sendAt: Date.now(),
                     });
 
                     const message = JSON.stringify(chatdata);
@@ -46,7 +46,7 @@ export default class SocketManager {
                     // );
                     // await collection.insertOne(chatdata);
 
-                    this.io.to(data.room).emit("chat", data);
+                    this.io.to(data.room).emit("chat", chatdata);
                 } catch (e) {
                     console.log(e);
                 }
