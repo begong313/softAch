@@ -168,8 +168,8 @@
 
 ### 8. Architecture style 설명
 
-<img width="1052" alt="5" src="https://github.com/begong313/softAch/assets/95959567/e9fe1a64-e753-4b7f-b44f-c48b95edf618">
-<img width="1060" alt="6" src="https://github.com/begong313/softAch/assets/95959567/d32cfd01-e667-46f5-a35b-95c23df421ea">
+<img width="1186" alt="7" src="https://github.com/begong313/softAch/assets/95959567/d44aeecf-6ff8-4d10-a332-6119119d271f">
+<img width="1202" alt="8" src="https://github.com/begong313/softAch/assets/95959567/7b770fbc-a73a-4c6e-b605-9f4ad9b6a20b">
 
 ### 9. 결과와 결론
 
