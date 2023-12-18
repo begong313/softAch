@@ -56,8 +56,9 @@
 
 ![chat.drawio (2).png](<HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/chat.drawio_(2).png>)
 
-![스크린샷 2023-10-17 오후 6.57.50.png](HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/1.png)
-![스크린샷 2023-10-17 오후 6.57.50.png](HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/2.png)
+<img width="1278" alt="1" src="https://github.com/begong313/softAch/assets/95959567/76d0b29c-a52c-4935-a2f0-cef22108d22f">
+
+<img width="1270" alt="2" src="https://github.com/begong313/softAch/assets/95959567/317dbcce-8d2b-44f5-96a4-d26f15494809">
 
 ### 5. 소프트웨어 시스템에 대한 기술적 부분 및 Framework
 
@@ -146,8 +147,8 @@
 -   NFR 에 대하여 고려하는 Quality Attributes 을 반영한 내용을 Class 에 설명 (양
     식 활용)
 
-![스크린샷 2023-10-17 오후 6.57.50.png](HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/3.png)
-![스크린샷 2023-10-17 오후 6.57.50.png](HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/4.png)
+<img width="1048" alt="3" src="https://github.com/begong313/softAch/assets/95959567/31edd64e-89f7-485c-b487-590fc9b14043">
+<img width="1050" alt="4" src="https://github.com/begong313/softAch/assets/95959567/14354837-d562-4330-988c-fd6cded89eba">
 
 -   Architecture Driver (FR, QA 등) 에 대한 Tactics 을 반영 시 설명하기
     **Tactic1. Deployability**
@@ -167,8 +168,8 @@
 
 ### 8. Architecture style 설명
 
-![스크린샷 2023-10-17 오후 6.57.50.png](HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/5.png)
-![스크린샷 2023-10-17 오후 6.57.50.png](HW4%20Final%20Term%20Project%20Work%20ff792dbeb38e404aa67a187a033f1854/6.png)
+<img width="1052" alt="5" src="https://github.com/begong313/softAch/assets/95959567/e9fe1a64-e753-4b7f-b44f-c48b95edf618">
+<img width="1060" alt="6" src="https://github.com/begong313/softAch/assets/95959567/d32cfd01-e667-46f5-a35b-95c23df421ea">
 
 ### 9. 결과와 결론
 
